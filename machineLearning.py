@@ -1,30 +1,40 @@
 import pandas as pd
 import numpy as np
+from sklearn.impute import SimpleImputer
+from sklearn.model_selection import train_test_split
 
-
-
-
-def cleanRowsWithMissingValues(raw_data):
-    indexOfRowsWithMissingValues = [] 
-    for row_index in range(1, raw_data.shape[0]):
-        for column_index in range(raw_data.shape[1]):
-            if(raw_data[row_index, column_index] == '?'):
-                indexOfRowsWithMissingValues.append(row_index)
-    raw_data = np.delete(raw_data, indexOfRowsWithMissingValues, axis=0)
-    return raw_data
-
-def splitData(cleaned_data):
-    rows = cleaned_data.shape[0]
-    rowsForTraining = round(rows*0.7)
-    x_train = cleaned_data[0:rowsForTraining, 0:13]
-    y_train = cleaned_data[0:rowsForTraining, 13]
-    
-
-
+#dealing with ? in data
 raw_data = pd.read_csv("MachineLearning/data/cleveland.data", sep = ',', header=None)
+raw_data = raw_data.replace('?', np.nan)
 
-raw_data = raw_data.values
-cleaned_data = cleanRowsWithMissingValues(raw_data)
-print(cleaned_data[0:5, 13])
-splitData(cleaned_data)
+
+#Sepparating classes from other data
+X = raw_data.iloc[:, :-1].values
+y = raw_data.iloc[:, -1].values
+
+
+#Dealing with missing data
+imputer = SimpleImputer(missing_values = np.nan, strategy = "mean")
+imputer.fit(X)
+X = imputer.transform(X)
+
+
+#Splitting data into training and test set
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25)
+
+
+#Saving training and test sets
+X_train = pd.DataFrame(X_train)
+X_test = pd.DataFrame(X_test)
+y_train = pd.DataFrame(y_train)
+y_test = pd.DataFrame(y_test)
+
+X_train.to_csv("MachineLearning/data/X_train.csv", index = False)
+X_test.to_csv("MachineLearning/data/X_test.csv", index = False)
+y_train.to_csv("MachineLearning/data/y_train.csv", index = False)
+y_test.to_csv("MachineLearning/data/y_test.csv", index = False)
+
+
+
+
 
