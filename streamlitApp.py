@@ -17,12 +17,12 @@ def showModelEval(modelDataPathR):
         modelEvaluationData = json.load(file)
     
     
-    st.write("accuracy gotten durning final test on the test set")
+    st.write("Achieved accuracy with final test on the test dataset")
     acc = str(round(modelEvaluationData["acc"], 4))
     acc = '<p style="font-size: 32px; color: Green">{}</p>'.format(acc)
     st.markdown(acc, unsafe_allow_html=True)
     
-    st.write("recall gotten durning final test on the test set")
+    st.write("Achieved Recall with final test on the test dataset")
     rec = str(round(modelEvaluationData["rec"], 4))
     rec = '<p style="font-size: 32px; color: Green">{}</p>'.format(rec)
     st.markdown(rec, unsafe_allow_html=True)
@@ -162,33 +162,6 @@ with st.form("user input"):
             st.write("No heart disease")
         
         
-        
-        
-#Dataset overview
-st.header("Original dataset overview")
-
-datasetPath = projectDirPath + "/data/raw/mixed_data.data"
-dataset = pd.read_csv(datasetPath)
-
-newNames = {"63.0" : "Age",
-            "1.0" : "Sex",
-            "1.0.1" : "Chest pain type",
-            "145.0" : "Resting blood pressure [mm Hg]",
-            "233.0" : "Serum cholestoral [mg/dl]",
-            "1.0.2" : "Fasting blood sugar ",
-            "2.0" : "Resting electrocardiographic results",
-            "150.0" : "Maximum heart rate achieved",
-            "0.0" : "Exercise induced angina",
-            "2.3" : "oldpeak ",
-            "3.0" : "slope",
-            "0.0.1" : "number of major vessels",
-            "6.0" : "thal",
-            "0" : "diagnosis of heart disease "}
-dataset = dataset.rename(columns = newNames, inplace = False)
-st.write(dataset)
-st.write("Class: >= 1 - Possible presence of heart disease, 0 - No heart disease")     
-        
-        
 
 st.header("Logistic Regression Analysis")
 st.write("Two models were trained, the one with better recall was chosen"
@@ -221,23 +194,47 @@ with col2Knn:
 with col3Knn:
     st.subheader("K-NN, 5 neighbors")
     showModelEval(projectDirPath + "/models/knn3")
-st.markdown('<p style="font-size: 28px; color: Red">4 neighbors ' +
+st.markdown('<p style="font-size: 28px;">4 neighbors ' +
             'were chosen for its best accuracy and recall</p>', unsafe_allow_html=True)
 
 
 st.header("Decision tree classifier")
-st.write("placeholder")
 showModelEval(projectDirPath + "/models/decisionTree")
 
 
 
 st.header("Random forest classifier")
-st.write("placeholder")
 showModelEval(projectDirPath + "/models/randomForest")
 
 
 st.header("Gaussian Nayve Bayes")
-st.write("placeholder")
 showModelEval(projectDirPath + "/models/gaussianNB")
+
+
+
+
+#Dataset overview
+st.header("Original dataset overview")
+
+datasetPath = projectDirPath + "/data/raw/mixed_data.data"
+dataset = pd.read_csv(datasetPath)
+
+newNames = {"63.0" : "Age",
+            "1.0" : "Sex",
+            "1.0.1" : "Chest pain type",
+            "145.0" : "Resting blood pressure [mm Hg]",
+            "233.0" : "Serum cholestoral [mg/dl]",
+            "1.0.2" : "Fasting blood sugar ",
+            "2.0" : "Resting electrocardiographic results",
+            "150.0" : "Maximum heart rate achieved",
+            "0.0" : "Exercise induced angina",
+            "2.3" : "oldpeak ",
+            "3.0" : "slope",
+            "0.0.1" : "number of major vessels",
+            "6.0" : "thal",
+            "0" : "diagnosis of heart disease "}
+dataset = dataset.rename(columns = newNames, inplace = False)
+st.write(dataset)
+st.write("Class: >= 1 - Possible presence of heart disease, 0 - No heart disease")     
 
 
