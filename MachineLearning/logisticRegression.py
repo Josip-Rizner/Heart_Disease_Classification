@@ -17,7 +17,7 @@ X_test = pd.read_csv(projectDirPath + "/data/cleaned/X_test.csv").values
 y_train = pd.read_csv(projectDirPath + "/data/cleaned/y_train.csv").values.reshape(-1,)
 y_test = pd.read_csv(projectDirPath + "/data/cleaned/y_test.csv").values.reshape(-1,)
 
-logisticRegression = LogisticRegression()
+logisticRegression = LogisticRegression(C=1000)
 logisticRegression.fit(X_train, y_train)
 
 

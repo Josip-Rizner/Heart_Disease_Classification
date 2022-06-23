@@ -77,12 +77,11 @@ projectDirPath = os.path.dirname(os.path.abspath(__file__))
 #General info
 st.header("Heart disease diagnosis")
 st.write("In this web app you can enter your data and determine if you potentialy have heart disease." + 
-         "Six machine learning models were trained and you'll get diagnosis from each one. " +
+         "Five machine learning models were trained and you'll get diagnosis from each one. " +
          "Under the input form you can look at the model evaluation data for test data set.")
 st.markdown("__- Logistic Regression__")
 st.markdown("__- Support Vector Machine__")
 st.markdown("__- K Nearest Neighbors__")
-st.markdown("__- Decision tree classifier__")
 st.markdown("__- Random forest classifier__")
 st.markdown("__- Gaussian Nayve Bayes__")
 
@@ -128,18 +127,6 @@ with st.form("user input"):
             st.markdown('<p style="font-size: 28px; color: Green">No heart disease</p>', unsafe_allow_html=True)
             st.write("No heart disease")
         
-        
-        st.subheader("Decision tree classifier prediction:")
-        decTreePath = projectDirPath + "/models/decisionTree.joblib"
-        decTreePred = getModelPrediction(decTreePath, userInput)
-        #st.write(userInput)
-        #st.write(logPred)
-        if (decTreePred == 1):
-            st.markdown('<p style="font-size: 28px; color: Red">Possibility of heart disease</p>', unsafe_allow_html=True)
-            st.write("Possibility of heart disease")
-        else:
-            st.markdown('<p style="font-size: 28px; color: Green">No heart disease</p>', unsafe_allow_html=True)
-            st.write("No heart disease")
             
         st.subheader("Random forest classifier prediction:")
         ranForPath = projectDirPath + "/models/randomForest.joblib"
@@ -196,12 +183,6 @@ with col3Knn:
     showModelEval(projectDirPath + "/models/knn3")
 st.markdown('<p style="font-size: 28px;">4 neighbors ' +
             'were chosen for its best accuracy and recall</p>', unsafe_allow_html=True)
-
-
-st.header("Decision tree classifier")
-showModelEval(projectDirPath + "/models/decisionTree")
-
-
 
 st.header("Random forest classifier")
 showModelEval(projectDirPath + "/models/randomForest")
