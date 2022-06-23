@@ -55,7 +55,7 @@ print("Accuracy on the test set for 5 neighbors: ", acc3)
 print("recall1 on the test set: ", rec3)
 print("confusion matrix:\n ", cm3)
 
-joblib.dump(knn3, open(projectDirPath + "/models/knn.joblib", 'wb'))
+joblib.dump(knn2, open(projectDirPath + "/models/knn.joblib", 'wb'))
 
 knn1EvaluationData = {"acc": acc1, "rec": rec1, "tn" : int(cm1[0, 0]), "fn" : int(cm1[1, 0]), "tp" : int(cm1[1, 1]), "fp" : int(cm1[0, 1])}
 knn2EvaluationData = {"acc": acc2, "rec": rec2, "tn" : int(cm2[0, 0]), "fn" : int(cm2[1, 0]), "tp" : int(cm2[1, 1]), "fp" : int(cm2[0, 1])}

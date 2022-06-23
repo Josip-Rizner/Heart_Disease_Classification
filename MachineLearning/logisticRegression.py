@@ -23,13 +23,13 @@ logisticRegression.fit(X_train, y_train)
 
 
 #applying transformation on features to achive non-linear decision border
-transformation = PolynomialFeatures(degree = 2)
-X_train_t = transformation.fit_transform(X_train)
-X_test_t = transformation.fit_transform(X_test)
+#transformation = PolynomialFeatures(degree = 2)
+#X_train_t = transformation.fit_transform(X_train)
+#X_test_t = transformation.fit_transform(X_test)
 
 #training new model on transformed features
-polyLogisticRegression = LogisticRegression(max_iter = 1800)
-polyLogisticRegression.fit(X_train_t, y_train)
+#polyLogisticRegression = LogisticRegression(max_iter = 1800)
+#polyLogisticRegression.fit(X_train_t, y_train)
 
 
 
@@ -50,6 +50,7 @@ print("confusion matrix:\n ", cm)
 
 
 #testing of model with non-linear border on the test set and computing : accuracy, recall and confusion matrix
+"""
 y_pred_p = polyLogisticRegression.predict(X_test_t)
 plot_confusion_matrix(polyLogisticRegression, X_test_t, y_test)
 
@@ -61,7 +62,7 @@ cmP = confusion_matrix(y_test, y_pred_p)
 print("accuracy on the test set: ", accP)
 print("recall on the test set: ", recP)
 print("confusion matrix:\n ", cmP)
-
+"""
 
 
 
@@ -70,12 +71,12 @@ joblib.dump(logisticRegression, open(projectDirPath + "/models/logisticReg.jobli
 
 
 logisticRegressionEvaluationData = {"acc": acc, "rec": rec, "tn" : int(cm[0, 0]), "fn" : int(cm[1, 0]), "tp" : int(cm[1, 1]), "fp" : int(cm[0, 1])}
-polyLogisticRegressionEvaluationData = {"acc": accP, "rec": recP, "tn" : int(cmP[0, 0]), "fn" : int(cmP[1, 0]), "tp" : int(cmP[1, 1]), "fp" : int(cmP[0, 1])}
+#polyLogisticRegressionEvaluationData = {"acc": accP, "rec": recP, "tn" : int(cmP[0, 0]), "fn" : int(cmP[1, 0]), "tp" : int(cmP[1, 1]), "fp" : int(cmP[0, 1])}
 
 with open(projectDirPath + "\\models\\logisticRegression.json", "w") as file:
     json.dump(logisticRegressionEvaluationData, file)
     
-with open(projectDirPath + "\\models\\polyLogisticRegression.json", "w") as file:
-    json.dump(polyLogisticRegressionEvaluationData, file)
+#with open(projectDirPath + "\\models\\polyLogisticRegression.json", "w") as file:
+#    json.dump(polyLogisticRegressionEvaluationData, file)
 
 

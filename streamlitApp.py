@@ -75,22 +75,20 @@ def processUserInput(userData):
 projectDirPath = os.path.dirname(os.path.abspath(__file__))
 
 #General info
-st.header("Breast cancer tumor classification")
-st.write("In this app you can view the analysis of breast cancer tumor" + 
-         " classification problem using three machine learning models:")
+st.header("Heart disease diagnosis")
+st.write("In this web app you can enter your data and determine if you potentialy have heart disease." + 
+         "Six machine learning models were trained and you'll get diagnosis from each one. " +
+         "Under the input form you can look at the model evaluation data for test data set.")
 st.markdown("__- Logistic Regression__")
 st.markdown("__- Support Vector Machine__")
 st.markdown("__- K Nearest Neighbors__")
 st.markdown("__- Decision tree classifier__")
 st.markdown("__- Random forest classifier__")
 st.markdown("__- Gaussian Nayve Bayes__")
-st.write("it is also possible to enter your own values of features, and" +
-         " get the prediction using all three models")
-
 
 
 #take user input and get prediction for every model that was chosen
-st.header("prediction based on user input")
+st.header("Enter your data:")
 
 
 with st.form("user input"):
@@ -196,15 +194,11 @@ st.header("Logistic Regression Analysis")
 st.write("Two models were trained, the one with better recall was chosen"
         + " because for this specific task recall is more important than accuracy")
 
-col1Log, col2Log = st.columns(2)
-with col1Log:
-    st.subheader("Logistic Regression - Linear border")
-    showModelEval(projectDirPath + "/models/logisticRegression")
-with col2Log:
-    st.subheader("Logistic Regression - Non-linear border")
-    showModelEval(projectDirPath + "/models/polyLogisticRegression")
-st.markdown('<p style="font-size: 28px; color: Red">linear border ' +
-            'was chosen for its better recall</p>', unsafe_allow_html=True)
+
+st.header("Support Vector Classifier")
+st.write("One model with linear kernel was trained")
+showModelEval(projectDirPath + "/models/logisticRegression")
+
 
 
 st.header("Support Vector Classifier")
@@ -227,8 +221,8 @@ with col2Knn:
 with col3Knn:
     st.subheader("K-NN, 5 neighbors")
     showModelEval(projectDirPath + "/models/knn3")
-st.markdown('<p style="font-size: 28px; color: Red">5 neighbors ' +
-            'were chosen for its better recall</p>', unsafe_allow_html=True)
+st.markdown('<p style="font-size: 28px; color: Red">4 neighbors ' +
+            'were chosen for its best accuracy and recall</p>', unsafe_allow_html=True)
 
 
 st.header("Decision tree classifier")
