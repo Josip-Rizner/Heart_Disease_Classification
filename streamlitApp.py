@@ -151,14 +151,7 @@ with st.form("user input"):
         
 
 st.header("Logistic Regression Analysis")
-st.write("Two models were trained, the one with better recall was chosen"
-        + " because for this specific task recall is more important than accuracy")
-
-
-st.header("Support Vector Classifier")
-st.write("One model with linear kernel was trained")
 showModelEval(projectDirPath + "/models/logisticRegression")
-
 
 
 st.header("Support Vector Classifier")

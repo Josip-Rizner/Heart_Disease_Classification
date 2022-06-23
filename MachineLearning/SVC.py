@@ -16,7 +16,8 @@ X_test = pd.read_csv(projectDirPath + "/data/cleaned/X_test.csv").values
 y_train = pd.read_csv(projectDirPath + "/data/cleaned/y_train.csv").values.reshape(-1,)
 y_test = pd.read_csv(projectDirPath + "/data/cleaned/y_test.csv").values.reshape(-1,)
 
-svc = SVC(kernel = "linear")
+#svc = SVC(kernel = "rbf", C=2, degree=2)
+svc = SVC(kernel = "poly", degree=2)
 svc.fit(X_train, y_train)
 
 """

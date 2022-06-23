@@ -15,8 +15,8 @@ X_test = pd.read_csv(projectDirPath + "/data/cleaned/X_test.csv").values
 y_train = pd.read_csv(projectDirPath + "/data/cleaned/y_train.csv").values.reshape(-1,)
 y_test = pd.read_csv(projectDirPath + "/data/cleaned/y_test.csv").values.reshape(-1,)
 
-knn1 = KNeighborsClassifier(n_neighbors = 3)
-knn2 = KNeighborsClassifier(n_neighbors = 4)
+knn1 = KNeighborsClassifier(n_neighbors = 3, weights="distance")
+knn2 = KNeighborsClassifier(n_neighbors = 4, weights="distance")
 knn3 = KNeighborsClassifier(n_neighbors = 5)
 
 knn1.fit(X_train, y_train)
