@@ -186,7 +186,7 @@ newNames = {"63.0" : "Age",
             "0" : "diagnosis of heart disease "}
 dataset = dataset.rename(columns = newNames, inplace = False)
 st.write(dataset)
-st.write("Class: 1 - Possible presence of heart disease, 2 - No heart disease")     
+st.write("Class: >= 1 - Possible presence of heart disease, 0 - No heart disease")     
         
         
 
