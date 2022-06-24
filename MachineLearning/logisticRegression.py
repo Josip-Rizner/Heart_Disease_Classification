@@ -34,7 +34,6 @@ logisticRegression.fit(X_train, y_train)
 
 
 
-#testing of model with linear border on the test set and computing : accuracy, recall and confusion matrix
 y_pred = logisticRegression.predict(X_test)
 plot_confusion_matrix(logisticRegression, X_test, y_test)
 
