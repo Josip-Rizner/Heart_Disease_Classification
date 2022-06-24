@@ -44,3 +44,5 @@ X_train.to_csv(projectDirPath + "/data/cleaned/X_train.csv", index = False)
 X_test.to_csv(projectDirPath + "/data/cleaned/X_test.csv", index = False)
 y_train.to_csv(projectDirPath + "/data/cleaned/y_train.csv", index = False)
 y_test.to_csv(projectDirPath + "/data/cleaned/y_test.csv", index = False)
+
+

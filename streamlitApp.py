@@ -155,7 +155,7 @@ showModelEval(projectDirPath + "/models/logisticRegression")
 
 
 st.header("Support Vector Classifier")
-st.write("One model with linear kernel was trained")
+st.write("One model with poly kernel and degree=2 was trained")
 showModelEval(projectDirPath + "/models/svc")
 
 
