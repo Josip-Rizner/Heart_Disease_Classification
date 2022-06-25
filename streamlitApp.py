@@ -74,9 +74,9 @@ def processUserInput(userData):
 #conventional way of getting the file path doesn't work with streamlit so this is used
 projectDirPath = os.path.dirname(os.path.abspath(__file__))
 
-#General info
+# Web app general info
 st.header("Heart disease diagnosis")
-st.write("In this web app you can enter your data and determine if you potentialy have heart disease." + 
+st.write("In this web app you can enter your data and determine if you potentialy have heart disease. " + 
          "Five machine learning models were trained and you'll get diagnosis from each one. " +
          "Under the input form you can look at the model evaluation data for test data set.")
 st.markdown("__- Logistic Regression__")
@@ -86,7 +86,7 @@ st.markdown("__- Random forest classifier__")
 st.markdown("__- Gaussian Nayve Bayes__")
 
 
-#take user input and get prediction for every model that was chosen
+#take user input and get prediction for every ml model
 st.header("Enter your data:")
 
 
@@ -102,30 +102,25 @@ with st.form("user input"):
         #st.write(logPred)
         if (logPred == 1):
             st.markdown('<p style="font-size: 28px; color: Red">Possibility of heart disease</p>', unsafe_allow_html=True)
-            st.write("Possibility of heart disease")
         else:
             st.markdown('<p style="font-size: 28px; color: Green">No heart disease</p>', unsafe_allow_html=True)
-            st.write("No heart disease")
             
         st.subheader("Support vector classifier prediction:")
         svcPath = projectDirPath + "/models/svc.joblib"
         svcPred = getModelPrediction(svcPath, userInput)
         if (logPred == 1):
             st.markdown('<p style="font-size: 28px; color: Red">Possibility of heart disease</p>', unsafe_allow_html=True)
-            st.write("Possibility of heart disease")
         else:
             st.markdown('<p style="font-size: 28px; color: Green">No heart disease</p>', unsafe_allow_html=True)
-            st.write("No heart disease")
+
         
         st.subheader("K nearest neighbors prediction:")
         knnPath = projectDirPath + "/models/knn.joblib"
         knnPred = getModelPrediction(knnPath, userInput)
         if (logPred == 1):
             st.markdown('<p style="font-size: 28px; color: Red">Possibility of heart disease</p>', unsafe_allow_html=True)
-            st.write("Possibility of heart disease")
         else:
             st.markdown('<p style="font-size: 28px; color: Green">No heart disease</p>', unsafe_allow_html=True)
-            st.write("No heart disease")
         
             
         st.subheader("Random forest classifier prediction:")
@@ -133,20 +128,16 @@ with st.form("user input"):
         ranForPred = getModelPrediction(ranForPath, userInput)
         if (ranForPred == 1):
             st.markdown('<p style="font-size: 28px; color: Red">Possibility of heart disease</p>', unsafe_allow_html=True)
-            st.write("Possibility of heart disease")
         else:
             st.markdown('<p style="font-size: 28px; color: Green">No heart disease</p>', unsafe_allow_html=True)
-            st.write("No heart disease")
         
         st.subheader("Gaussian Nayve Bayes prediction:")
         gaussNBPath = projectDirPath + "/models/gaussianNB.joblib"
         gaussNBPred = getModelPrediction(gaussNBPath, userInput)
         if (gaussNBPred == 1):
             st.markdown('<p style="font-size: 28px; color: Red">Possibility of heart disease</p>', unsafe_allow_html=True)
-            st.write("Possibility of heart disease")
         else:
             st.markdown('<p style="font-size: 28px; color: Green">No heart disease</p>', unsafe_allow_html=True)
-            st.write("No heart disease")
         
         
 
